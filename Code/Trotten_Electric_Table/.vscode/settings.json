@@ -5,9 +5,32 @@
   "idf.openOcdConfigs": [
     "board/esp32-wrover-kit-3.3v.cfg"
   ],
-  "idf.portWin": "COM4",
+  "idf.portWin": "COM3",
   "idf.toolsPathWin": "C:\\Users\\antoi\\.espressif",
   "idf.customExtraVars": {
     "IDF_TARGET": "esp32"
-  }
+  },
+  "files.associations": {
+    "freertos.h": "c",
+    "esp_rom_sys.h": "c",
+    "esp_timer.h": "c",
+    "hcsr04.h": "c",
+    "esp_log.h": "c",
+    "adc.h": "c",
+    "esp_err.h": "c",
+    "adc_oneshot.h": "c",
+    "i2c_master.h": "c",
+    "esp_lcd_panel_ssd1306.h": "c",
+    "task.h": "c",
+    "esp_lcd_panel_dev.h": "c",
+    "task_common.h": "c",
+    "esp_lcd_panel_ops.h": "c",
+    "esp_lcd_io_i2c.h": "c",
+    "ssd1306.h": "c",
+    "i2c.h": "c",
+    "oled_ssd1306.h": "c",
+    "ssd1306_16bit.h": "c",
+    "font16x16.h": "c"
+  },
+  "idf.flashType": "UART"
 }

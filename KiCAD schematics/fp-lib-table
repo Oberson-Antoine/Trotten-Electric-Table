@@ -1,0 +1,7 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "INA260")(type "KiCad")(uri "${KIPRJMOD}/Lib/INA260/INA260.pretty")(options "")(descr ""))
+  (lib (name "ESP32-30pin")(type "KiCad")(uri "${KIPRJMOD}/Lib/ESP32-30pin")(options "")(descr ""))
+  (lib (name "CJMCU-2317 MCP23017 I2C SERIAL INTERFACE 16 BIT I")(type "KiCad")(uri "${KIPRJMOD}/Lib/CJMCU-2317 MCP23017 I2C SERIAL INTERFACE 16 BIT I")(options "")(descr ""))
+  (lib (name "Connecteur_Moteur")(type "KiCad")(uri "${KIPRJMOD}/Lib/Connecteur_moteur/Connecteur_Moteur.pretty")(options "")(descr ""))
+)
