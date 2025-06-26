@@ -1,0 +1,23 @@
+%TF.GenerationSoftware,KiCad,Pcbnew,9.0.2*%
+%TF.CreationDate,2025-06-23T18:10:37+02:00*%
+%TF.ProjectId,trotten pcb,74726f74-7465-46e2-9070-63622e6b6963,rev?*%
+%TF.SameCoordinates,Original*%
+%TF.FileFunction,Profile,NP*%
+%FSLAX46Y46*%
+G04 Gerber Fmt 4.6, Leading zero omitted, Abs format (unit mm)*
+G04 Created by KiCad (PCBNEW 9.0.2) date 2025-06-23 18:10:37*
+%MOMM*%
+%LPD*%
+G01*
+G04 APERTURE LIST*
+%TA.AperFunction,Profile*%
+%ADD10C,0.050000*%
+%TD*%
+G04 APERTURE END LIST*
+D10*
+X76500000Y-23900000D02*
+X152800000Y-23900000D01*
+X152800000Y-84800000D01*
+X76500000Y-84800000D01*
+X76500000Y-23900000D01*
+M02*

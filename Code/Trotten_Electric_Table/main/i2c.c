@@ -2,7 +2,7 @@
  * @Author                : Oberson-Antoine<antoine.oberson@yahoo.fr>        *
  * @CreatedDate           : 2025-06-19 16:32:19                              *
  * @LastEditors           : Oberson-Antoine<antoine.oberson@yahoo.fr>        *
- * @LastEditDate          : 2025-06-19 18:22:59                              *
+ * @LastEditDate          : 2025-06-26 22:18:55                              *
  * @FilePath              : Trotten_Electric_Table/main/i2c.c                *
  ****************************************************************************/
 
@@ -23,7 +23,7 @@ esp_err_t i2c_bus_init(void)
         .sda_io_num = I2C_SDA_GPIO,
         .scl_io_num = I2C_SCL_GPIO,
         .glitch_ignore_cnt = 7,
-        .flags.enable_internal_pullup = false, 
+        .flags.enable_internal_pullup = true, 
     };
 
     ESP_ERROR_CHECK(i2c_new_master_bus(&i2c_mst_config, &i2c_bus_handle));

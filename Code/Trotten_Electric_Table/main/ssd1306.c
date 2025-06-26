@@ -2,7 +2,7 @@
  * @Author                : Oberson-Antoine<antoine.oberson@yahoo.fr>        *
  * @CreatedDate           : 2025-06-19 14:07:17                              *
  * @LastEditors           : Oberson-Antoine<antoine.oberson@yahoo.fr>        *
- * @LastEditDate          : 2025-06-20 16:44:57                              *
+ * @LastEditDate          : 2025-06-26 22:31:48                              *
  * @FilePath              : Trotten_Electric_Table/main/ssd1306.c            *
  ****************************************************************************/
 
@@ -25,6 +25,7 @@
 uint8_t ssd1306_framebuffer[WIDTH * HEIGHT / 8] = {0}; // 512 bytes for SSD1306
 esp_lcd_panel_handle_t ssd1306_panel_handle;
 static QueueHandle_t ssd1306_display_queue = NULL;
+
 
 /**
  * Bitmap font
@@ -272,9 +273,12 @@ void ssd1306_task()
         .flags = {
             .dc_low_on_data = 0,  // default
         },
-        .scl_speed_hz = 100000,
+        .scl_speed_hz = 50000 ,
     };
+
+
     ESP_ERROR_CHECK(esp_lcd_new_panel_io_i2c(i2c_bus_handle, &ssd1306_io_config, &ssd1306_io_handle));
+
 
 
 
@@ -308,7 +312,7 @@ void ssd1306_task()
 }
 
 
-void start_display_task(void) {
-    display_queue = xQueueCreate(5, sizeof(display_msg_t));
-    xTaskCreatePinnedToCore(ssd1306_task, "ssd1306 Task", SSD1306_TASK_STACK_SIZE, NULL, SSD1306_TASK_PRIORITY, NULL, SSD1306_TASK_CORE_ID);
-}
+// void start_display_task(void) {
+//     display_queue = xQueueCreate(5, sizeof(display_msg_t));
+//     xTaskCreatePinnedToCore(ssd1306_task, "ssd1306 Task", SSD1306_TASK_STACK_SIZE, NULL, SSD1306_TASK_PRIORITY, NULL, SSD1306_TASK_CORE_ID);
+// }

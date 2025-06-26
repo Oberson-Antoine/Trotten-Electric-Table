@@ -2,7 +2,7 @@
  * @Author                : Oberson-Antoine<antoine.oberson@yahoo.fr>        *
  * @CreatedDate           : 2025-06-19 16:25:38                              *
  * @LastEditors           : Oberson-Antoine<antoine.oberson@yahoo.fr>        *
- * @LastEditDate          : 2025-06-21 13:43:09                              *
+ * @LastEditDate          : 2025-06-26 22:01:05                              *
  * @FilePath              : Trotten_Electric_Table/main/ssd1306.h            *
  ****************************************************************************/
 

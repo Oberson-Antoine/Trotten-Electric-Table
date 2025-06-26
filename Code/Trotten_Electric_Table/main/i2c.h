@@ -2,7 +2,7 @@
  * @Author                : Oberson-Antoine<antoine.oberson@yahoo.fr>        *
  * @CreatedDate           : 2025-06-19 16:31:26                              *
  * @LastEditors           : Oberson-Antoine<antoine.oberson@yahoo.fr>        *
- * @LastEditDate          : 2025-06-19 18:36:07                              *
+ * @LastEditDate          : 2025-06-26 22:36:51                              *
  * @FilePath              : Trotten_Electric_Table/main/i2c.h                *
  ****************************************************************************/
 
@@ -17,8 +17,8 @@
 
 
 #define I2C_PORT        I2C_NUM_0 //-1 for auto select
-#define I2C_SDA_GPIO    21
-#define I2C_SCL_GPIO    22
+#define I2C_SDA_GPIO    8
+#define I2C_SCL_GPIO    9
 
 
 /**
