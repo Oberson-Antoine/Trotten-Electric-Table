@@ -2,7 +2,7 @@
  * @Author                : Oberson-Antoine<antoine.oberson@yahoo.fr>        *
  * @CreatedDate           : 2025-06-19 14:07:17                              *
  * @LastEditors           : Oberson-Antoine<antoine.oberson@yahoo.fr>        *
- * @LastEditDate          : 2025-06-26 22:31:48                              *
+ * @LastEditDate          : 2025-06-28 21:30:57                              *
  * @FilePath              : Trotten_Electric_Table/main/ssd1306.c            *
  ****************************************************************************/
 
@@ -12,6 +12,7 @@
 #include <string.h>
 #include "task_common.h"
 
+#include "esp_log.h"
 #include "ssd1306.h"
 #include "i2c.h"
 #include "freertos/FreeRTOS.h"
@@ -25,6 +26,7 @@
 uint8_t ssd1306_framebuffer[WIDTH * HEIGHT / 8] = {0}; // 512 bytes for SSD1306
 esp_lcd_panel_handle_t ssd1306_panel_handle;
 static QueueHandle_t ssd1306_display_queue = NULL;
+char TAG[] = "SSD1306_TASK";
 
 
 /**
@@ -246,10 +248,26 @@ void draw_char_scale2(int x, int y, char c)
 }
 
 // Draw string left to right
-void draw_string(int x, int y, const char* text) {
+void draw_string(int x, int y, const char* text, ssd1306_message_e msgID) {
     memset(ssd1306_framebuffer, 0, sizeof(ssd1306_framebuffer)); // Clear framebuffer
     while (*text) {
-        draw_char_scale2(x, y, *text++);
+        switch (msgID)
+        {
+        case HEIGHT_FLOAT:
+            ESP_LOGI(TAG,"draw_char_scale2");
+            draw_char_scale2(x, y, *text++);
+            break;
+        
+        case STRING_PRINT:
+        ESP_LOGI(TAG,"draw_char");
+            draw_char(x,y, *text++);
+            break;
+        
+        default:
+            break;
+        }
+        // ESP_LOGI(TAG,"draw_char_scale legacy");
+        // draw_char_scale2(x, y, *text++);
         x += 12; // 16 pixels + 1 spacing
     }
 }
@@ -257,8 +275,12 @@ void draw_string(int x, int y, const char* text) {
 
 void ssd1306_task()
 {
+
     i2c_master_bus_handle_t i2c_bus_handle = get_i2c_bus(); // get the handle from the init
-    SemaphoreHandle_t i2c_bus_mutex_handle = get_i2c_mutex(); // the mutex from the init^
+    SemaphoreHandle_t i2c_bus_mutex_handle = get_i2c_mutex(); // the mutex from the init
+
+    // Take the mutex before initializing the display
+    xSemaphoreTake(i2c_bus_mutex_handle, portMAX_DELAY);
 
 
 
@@ -273,9 +295,8 @@ void ssd1306_task()
         .flags = {
             .dc_low_on_data = 0,  // default
         },
-        .scl_speed_hz = 50000 ,
+        .scl_speed_hz = 400000  ,
     };
-
 
     ESP_ERROR_CHECK(esp_lcd_new_panel_io_i2c(i2c_bus_handle, &ssd1306_io_config, &ssd1306_io_handle));
 
@@ -293,26 +314,89 @@ void ssd1306_task()
         .vendor_config = &ssd1306_screen_vendor_config,
     };
 
+    
+    esp_err_t err;
 
     
+
     ESP_ERROR_CHECK(esp_lcd_new_panel_ssd1306(ssd1306_io_handle, &ssd1306_screen_config, &ssd1306_panel_handle));
-    esp_lcd_panel_reset(ssd1306_panel_handle);
-    esp_lcd_panel_init(ssd1306_panel_handle);
+    err = esp_lcd_panel_reset(ssd1306_panel_handle);
+
+    err = esp_lcd_panel_init(ssd1306_panel_handle);
+    
+    esp_lcd_panel_disp_on_off(ssd1306_panel_handle, true);
+
     esp_lcd_panel_mirror(ssd1306_panel_handle, 1, 1);
 
+    
+
+    // char buffer[7];
+    // sprintf(buffer,"%d cm",232);
+    // draw_string(0, 0, buffer, HEIGHT_FLOAT);
+    // ESP_ERROR_CHECK(esp_lcd_panel_draw_bitmap(ssd1306_panel_handle, 0, 0, WIDTH, HEIGHT, ssd1306_framebuffer));
+
+    xSemaphoreGive(i2c_bus_mutex_handle); //release the mutex
 
 
-    // 5. Clear the screen
-    esp_lcd_panel_disp_on_off(ssd1306_panel_handle, true);
-    char buffer[7];
-    sprintf(buffer,"%d cm",232);
-    draw_string(0, 0, buffer);
-    esp_lcd_panel_draw_bitmap(ssd1306_panel_handle, 0, 0, WIDTH, HEIGHT, ssd1306_framebuffer);
+    // task loop
+    ssd1306_queue_message_t msg;
+
+    for(;;)
+    {
+        //check if we receive a message in the queu
+        if (xQueueReceive(ssd1306_display_queue, &msg, portMAX_DELAY) == pdTRUE)
+        {
+            ESP_LOGI(TAG,"Message Queue received a message.");
+            if (xSemaphoreTake(i2c_bus_mutex_handle, portMAX_DELAY) == pdTRUE)
+            {
+                
+                ESP_LOGI(TAG,"Modifying the screen.");
+                //ssd1306_erase();
+                switch (msg.msgID)
+                {
+                case HEIGHT_FLOAT:
+                    ESP_LOGI(TAG,"Case HEIGHT_FLOAT");
+                    char buffer[7];
+                    sprintf(buffer,"%3d cm",msg.height_mes);
+                    draw_string(0, 0, buffer, msg.msgID);
+                    ESP_ERROR_CHECK(esp_lcd_panel_draw_bitmap(ssd1306_panel_handle, 0, 0, WIDTH, HEIGHT, ssd1306_framebuffer));
+                    
+
+                    break;
+
+                case STRING_PRINT:
+                    draw_string(msg.x, msg.y, msg.text, msg.msgID);
+                    esp_lcd_panel_draw_bitmap(ssd1306_panel_handle, 0, 0, WIDTH, HEIGHT, ssd1306_framebuffer);
+                    
+                    break;
+                    
+                default:
+                    break;
+                }
+                xSemaphoreGive(i2c_bus_mutex_handle); //release the mutex
+            }
+            
+        }
+        
+    }
+
+    // esp_lcd_panel_disp_on_off(ssd1306_panel_handle, true);
+    // ssd1306_erase();
+    // char buffer[7];
+    // sprintf(buffer,"%d cm",232);
+    // draw_string(0, 0, buffer);
+    // esp_lcd_panel_draw_bitmap(ssd1306_panel_handle, 0, 0, WIDTH, HEIGHT, ssd1306_framebuffer);
+    
     
 }
 
 
-// void start_display_task(void) {
-//     display_queue = xQueueCreate(5, sizeof(display_msg_t));
-//     xTaskCreatePinnedToCore(ssd1306_task, "ssd1306 Task", SSD1306_TASK_STACK_SIZE, NULL, SSD1306_TASK_PRIORITY, NULL, SSD1306_TASK_CORE_ID);
-// }
+QueueHandle_t ssd1306_get_queue_handle()
+{
+    return ssd1306_display_queue;
+}
+
+void start_display_task(void) {
+    ssd1306_display_queue = xQueueCreate(5, sizeof(ssd1306_queue_message_t));
+    xTaskCreatePinnedToCore(ssd1306_task, "ssd1306 Task", SSD1306_TASK_STACK_SIZE, NULL, SSD1306_TASK_PRIORITY, NULL, SSD1306_TASK_CORE_ID);
+}

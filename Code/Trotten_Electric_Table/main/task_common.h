@@ -2,7 +2,7 @@
  * @Author                : Oberson-Antoine<antoine.oberson@yahoo.fr>        *
  * @CreatedDate           : 2025-06-14 18:41:20                              *
  * @LastEditors           : Oberson-Antoine<antoine.oberson@yahoo.fr>        *
- * @LastEditDate          : 2025-06-20 16:41:40                              *
+ * @LastEditDate          : 2025-06-28 21:20:12                              *
  * @FilePath              : Trotten_Electric_Table/main/task_common.h        *
  ****************************************************************************/
 
@@ -31,7 +31,7 @@
 
 //HC-SR04 TASK
 
-#define HCSR04_TASK_STACK_SIZE               2048
+#define HCSR04_TASK_STACK_SIZE               3072 
 #define HCSR04_TASK_PRIORITY                 5
 #define HCSR04_TASK_CORE_ID                  1
 
@@ -44,7 +44,7 @@
 
 //SSD1306 TASK
 #define SSD1306_TASK_STACK_SIZE               4096
-#define SSD1306_TASK_PRIORITY                 5
+#define SSD1306_TASK_PRIORITY                 4
 #define SSD1306_TASK_CORE_ID                  1
 
 //SSD1306 M

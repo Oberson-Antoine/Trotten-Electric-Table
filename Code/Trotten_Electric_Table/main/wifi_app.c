@@ -2,8 +2,8 @@
  * @Author                : Oberson-Antoine<antoine.oberson@yahoo.fr>        *
  * @CreatedDate           : 2025-06-08 14:53:21                              *
  * @LastEditors           : Oberson-Antoine<antoine.oberson@yahoo.fr>        *
- * @LastEditDate          : 2025-06-15 12:19:52                              *
- * @FilePath              : udemy_esp32/main/wifi_app.c                      *
+ * @LastEditDate          : 2025-06-28 15:12:22                              *
+ * @FilePath              : Trotten_Electric_Table/main/wifi_app.c           *
  ****************************************************************************/
 
 #include "freertos/FreeRTOS.h"

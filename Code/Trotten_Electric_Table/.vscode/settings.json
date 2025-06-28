@@ -1,6 +1,6 @@
 {
   "C_Cpp.intelliSenseEngine": "default",
-  "idf.espIdfPathWin": "C:\\Users\\antoi\\esp\\v5.4.1\\esp-idf",
+  "idf.espIdfPathWin": "C:\\Users\\antoi\\esp\\v5.5\\esp-idf",
   "idf.pythonInstallPath": "C:\\Users\\antoi\\.espressif\\tools\\idf-python\\3.11.2\\python.exe",
   "idf.openOcdConfigs": [
     "board/esp32s3-builtin.cfg"
@@ -31,7 +31,10 @@
     "oled_ssd1306.h": "c",
     "ssd1306_16bit.h": "c",
     "font16x16.h": "c",
-    "stdbool.h": "c"
+    "stdbool.h": "c",
+    "wifi_app.h": "c",
+    "event_groups.h": "c",
+    "esp_lcd_types.h": "c"
   },
   "idf.flashType": "UART"
 }

@@ -2,7 +2,7 @@
  * @Author                : Oberson-Antoine<antoine.oberson@yahoo.fr>         *
  * @CreatedDate           : 2025-06-18 12:34:45                               *
  * @LastEditors           : Oberson-Antoine<antoine.oberson@yahoo.fr>         *
- * @LastEditDate          : 2025-06-20 10:42:46                               *
+ * @LastEditDate          : 2025-06-28 21:19:34                               *
  * @FilePath              : Trotten_Electric_Table/main/main.c                *
  *****************************************************************************/
 
@@ -19,6 +19,7 @@
 void app_main(void)
 {
 
+
         //initialize NVS
         esp_err_t ret = nvs_flash_init();
         if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND)
@@ -28,15 +29,24 @@ void app_main(void)
         }
         ESP_ERROR_CHECK(ret);
 
+        // Initialize the i2c Bus
+        i2c_bus_init();
+
         // start wifi
         wifi_app_start();
+
+        
+        
+
+        //Start ssd1306_task DECLARE BEFORE ANY COMPONENT THAT WOULD USE THE SCREEN
+        start_display_task();
 
         //start HCSR04 sensor task
         HCSR04_task_start();
 
-        // Initialize the i2c Bus
-        i2c_bus_init();
+        
 
-        ssd1306_task();
+        
+        
 
 }

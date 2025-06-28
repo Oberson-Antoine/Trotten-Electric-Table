@@ -2,7 +2,7 @@
  * @Author                : Oberson-Antoine<antoine.oberson@yahoo.fr>        *
  * @CreatedDate           : 2025-03-01 00:00:00                              *
  * @LastEditors           : Oberson-Antoine<antoine.oberson@yahoo.fr>        *
- * @LastEditDate          : 2025-06-18 15:40:24                              *
+ * @LastEditDate          : 2025-06-28 21:33:32                              *
  * @FilePath              : Trotten_Electric_Table/main/HCSR04.c             *
  ****************************************************************************/
 
@@ -14,6 +14,7 @@
 #include "esp_rom_sys.h"
 #include "esp_log.h"
 #include "HCSR04.h"
+#include "ssd1306.h"
 #include "task_common.h"
 
 
@@ -130,6 +131,8 @@ static void HCSR04_task(void *pvParameter)
     // create variable which stores the measured distance
     static uint32_t distance = 0;
 
+    QueueHandle_t SSD1306_queue = ssd1306_get_queue_handle();
+
     for (;;)
     {
         return_value = UltrasonicMeasure(250, &distance);
@@ -137,10 +140,16 @@ static void HCSR04_task(void *pvParameter)
         UltrasonicAssert(return_value);
         if (return_value == ESP_OK) {
             printf ("Distance: %ld\n\n", distance);
+            ssd1306_queue_message_t msg = {.msgID = HEIGHT_FLOAT ,.x = 0, .y = 0, .height_mes=distance};
+            xQueueSend(SSD1306_queue, &msg, portMAX_DELAY);
         }    
     
         // 0,5 second delay before starting new measurement
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        
+        //strncpy(msg.text, "Hello!", sizeof(msg.text));
+        
+
+        vTaskDelay(60 / portTICK_PERIOD_MS);
 
     }
     

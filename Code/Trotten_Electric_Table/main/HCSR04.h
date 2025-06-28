@@ -2,7 +2,7 @@
  * @Author                : Oberson-Antoine<antoine.oberson@yahoo.fr>        *
  * @CreatedDate           : 2025-03-01 00:00:00                              *
  * @LastEditors           : Oberson-Antoine<antoine.oberson@yahoo.fr>        *
- * @LastEditDate          : 2025-06-18 14:06:39                              *
+ * @LastEditDate          : 2025-06-28 14:27:45                              *
  * @FilePath              : Trotten_Electric_Table/main/HCSR04.h             *
  ****************************************************************************/
 
@@ -18,8 +18,8 @@ extern "C" {
 #define ESP_ERR_ULTRASONIC_PING_TIMEOUT 0x201
 #define ESP_ERR_ULTRASONIC_ECHO_TIMEOUT 0x202
 
-#define ESP_HCSR04_TRIGGER_PIN    27  // define trigger IO pin */
-#define ESP_HCSR04_ECHO_PIN       26      // define echo IO pin */
+#define ESP_HCSR04_TRIGGER_PIN    14  // define trigger IO pin */
+#define ESP_HCSR04_ECHO_PIN       15      // define echo IO pin */
 
 
 
