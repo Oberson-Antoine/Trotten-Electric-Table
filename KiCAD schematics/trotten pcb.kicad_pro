@@ -506,7 +506,7 @@
       "plot": "FAB/",
       "pos_files": "",
       "specctra_dsn": "",
-      "step": "",
+      "step": "trotten pcb.step",
       "svg": "",
       "vrml": ""
     },

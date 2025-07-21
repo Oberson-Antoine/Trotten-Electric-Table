@@ -2,7 +2,7 @@
  * @Author                : Oberson-Antoine<antoine.oberson@yahoo.fr>        *
  * @CreatedDate           : 2025-06-08 14:53:21                              *
  * @LastEditors           : Oberson-Antoine<antoine.oberson@yahoo.fr>        *
- * @LastEditDate          : 2025-06-28 15:12:22                              *
+ * @LastEditDate          : 2025-07-14 18:17:28                              *
  * @FilePath              : Trotten_Electric_Table/main/wifi_app.c           *
  ****************************************************************************/
 

@@ -2,7 +2,7 @@
  * @Author                : Oberson-Antoine<antoine.oberson@yahoo.fr>        *
  * @CreatedDate           : 2025-06-19 14:07:17                              *
  * @LastEditors           : Oberson-Antoine<antoine.oberson@yahoo.fr>        *
- * @LastEditDate          : 2025-07-06 18:27:18                              *
+ * @LastEditDate          : 2025-07-15 12:31:29                              *
  * @FilePath              : Trotten_Electric_Table/main/ssd1306.c            *
  ****************************************************************************/
 
@@ -15,7 +15,7 @@
 
 #include "esp_log.h"
 #include "ssd1306.h"
-#include "i2c.h"
+#include "i2c_p.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
@@ -27,7 +27,7 @@
 uint8_t ssd1306_framebuffer[WIDTH * HEIGHT / 8] = {0}; // 512 bytes for SSD1306
 esp_lcd_panel_handle_t ssd1306_panel_handle;
 static QueueHandle_t ssd1306_display_queue = NULL;
-char TAG[] = "SSD1306_TASK";
+static const char TAG[] = "SSD1306_TASK";
 
 /**
  * Bitmap font
@@ -266,12 +266,12 @@ void draw_string(int x, int y, const char *text, ssd1306_message_e msgID)
         switch (msgID)
         {
         case HEIGHT_FLOAT:
-            ESP_LOGI(TAG, "draw_char_scale2");
+            //ESP_LOGI(TAG, "draw_char_scale2");
             draw_char_scale2(x, y, *text++);
             break;
 
         case STRING_PRINT:
-            ESP_LOGI(TAG, "draw_char");
+            //ESP_LOGI(TAG, "draw_char");
             draw_char(x, y, *text++);
             break;
 
@@ -286,6 +286,7 @@ void draw_string(int x, int y, const char *text, ssd1306_message_e msgID)
 
 void ssd1306_task()
 {
+    ESP_LOGI(TAG, "SSD1306 task starting...");
 
     i2c_master_bus_handle_t i2c_bus_handle = get_i2c_bus();   // get the handle from the init
     SemaphoreHandle_t i2c_bus_mutex_handle = get_i2c_mutex(); // the mutex from the init
@@ -303,7 +304,7 @@ void ssd1306_task()
         .flags = {
             .dc_low_on_data = 0, // default
         },
-        .scl_speed_hz = 400000,
+        .scl_speed_hz = 100000,
     };
 
     ESP_ERROR_CHECK(esp_lcd_new_panel_io_i2c(i2c_bus_handle, &ssd1306_io_config, &ssd1306_io_handle));
@@ -345,16 +346,16 @@ void ssd1306_task()
         // check if we receive a message in the queu
         if (xQueueReceive(ssd1306_display_queue, &msg, portMAX_DELAY) == pdTRUE)
         {
-            ESP_LOGI(TAG, "Message Queue received a message.");
+            //ESP_LOGI(TAG, "Message Queue received a message.");
             if (xSemaphoreTake(i2c_bus_mutex_handle, portMAX_DELAY) == pdTRUE)
             {
 
-                ESP_LOGI(TAG, "Modifying the screen.");
+                //ESP_LOGI(TAG, "Modifying the screen.");
                 // ssd1306_erase();
                 switch (msg.msgID)
                 {
                 case HEIGHT_FLOAT:
-                    ESP_LOGI(TAG, "Case HEIGHT_FLOAT");
+                    //ESP_LOGI(TAG, "Case HEIGHT_FLOAT");
                     char buffer[7];
                     sprintf(buffer, "%3d cm", msg.height_mes);
                     draw_string(0, 0, buffer, msg.msgID);

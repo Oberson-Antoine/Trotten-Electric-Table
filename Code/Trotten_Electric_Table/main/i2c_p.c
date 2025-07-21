@@ -2,11 +2,12 @@
  * @Author                : Oberson-Antoine<antoine.oberson@yahoo.fr>        *
  * @CreatedDate           : 2025-06-19 16:32:19                              *
  * @LastEditors           : Oberson-Antoine<antoine.oberson@yahoo.fr>        *
- * @LastEditDate          : 2025-06-28 16:41:51                              *
- * @FilePath              : Trotten_Electric_Table/main/i2c.c                *
+ * @LastEditDate          : 2025-07-15 10:06:25                              *
+ * @FilePath              : Trotten_Electric_Table/main/i2c_p.c              *
  ****************************************************************************/
 
-#include "i2c.h"
+#include "i2c_p.h"
+#include "driver/gpio.h"
 
 
 

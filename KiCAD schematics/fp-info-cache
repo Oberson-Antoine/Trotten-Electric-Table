@@ -1,4 +1,4 @@
-25611579461542333
+25616838788694323
 Adafruit ESP32-s3
 MODULE_3405
 
@@ -6,6 +6,13 @@ MODULE_3405
 0
 30
 30
+Adafruit_23017
+MCP23017_ADAFRUIT
+
+
+0
+46
+27
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -395,6 +402,13 @@ Battery
 Battery_Panasonic_CR3032-VCN_Vertical_CircularHoles
 Panasonic CR-3032/VCN battery, https://industrial.panasonic.com/cdbs/www-data/pdf2/AAA4000/AAA4000D508.PDF
 battery CR-3032 coin cell vertical
+0
+2
+2
+Button_6_6
+6x6x5_Button
+
+
 0
 2
 2
@@ -93806,6 +93820,13 @@ rotary encoder illuminated switch vertical
 0
 9
 8
+SSD1306
+SSD1306
+
+
+0
+4
+4
 Sensor
 ASAIR_AM2302_P2.54mm_Lead2.75mm_TabDown
 Temperature and humidity module, http://akizukidenshi.com/download/ds/aosong/AM2302.pdf

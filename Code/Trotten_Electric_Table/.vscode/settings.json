@@ -37,7 +37,26 @@
     "esp_lcd_types.h": "c",
     "queue.h": "c",
     "format": "c",
-    "cstdint": "c"
+    "cstdint": "c",
+    "MCP23017.C": "cpp",
+    "esp_intr_alloc.h": "c",
+    "http_server.h": "c",
+    "MCP23017_p.C": "cpp",
+    "sdkconfig.h": "c",
+    "semphr.h": "c",
+    "i2c_p.h": "c",
+    "esp_lcd_panel_io.h": "c",
+    "charconv": "c",
+    "chrono": "c",
+    "optional": "c",
+    "ratio": "c",
+    "system_error": "c",
+    "array": "c",
+    "functional": "c",
+    "regex": "c",
+    "tuple": "c",
+    "type_traits": "c",
+    "utility": "c"
   },
   "idf.flashType": "UART"
 }

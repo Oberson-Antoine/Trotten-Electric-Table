@@ -1,0 +1,5 @@
+﻿"Rectangle_Button_Width"= 29.8mm
+"Rectangle_Button_Length"= 25mm
+"Rectangle_Button_Stem_w"= 6.2mm
+"Rectangle_Button_Stem_Length"= 3mm
+"Rectangle_Button_Stem_marge"= 0.15mm

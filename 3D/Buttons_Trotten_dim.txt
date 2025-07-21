@@ -1,0 +1,12 @@
+"SSD1306_screen_w" = 11.5mm
+"SSD1306_screen_l" = 30mm
+"SSD1306_screen_t" = 1.5mm
+"SSD1306_screen_marge" = 0.25mm
+"SSD1306_PCB_Screen_H" = 7.3mm
+"clip_h" = 5mm
+"clip_l" = 5mm
+"clip_w" = 1.5mm
+"clip_lip_h" = 1mm
+"clip_lip_l" = 0.5mm
+
+

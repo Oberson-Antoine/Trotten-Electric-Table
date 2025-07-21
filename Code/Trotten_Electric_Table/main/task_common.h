@@ -29,12 +29,6 @@
 // #define DHT22_TASK_PRIORITY                 5
 // #define DHT22_TASK_CORE_ID                  1
 
-//HC-SR04 TASK
-
-#define HCSR04_TASK_STACK_SIZE               3072 
-#define HCSR04_TASK_PRIORITY                 5
-#define HCSR04_TASK_CORE_ID                  1
-
 
 //ACS712 TASK
 
@@ -42,9 +36,19 @@
 #define ACS712_TASK_PRIORITY                 6
 #define ACS712_TASK_CORE_ID                  1
 
+//HC-SR04 TASK
+
+#define HCSR04_TASK_STACK_SIZE               3072 
+#define HCSR04_TASK_PRIORITY                 5
+#define HCSR04_TASK_CORE_ID                  1
+
+
 //SSD1306 TASK
 #define SSD1306_TASK_STACK_SIZE               4096
 #define SSD1306_TASK_PRIORITY                 4
 #define SSD1306_TASK_CORE_ID                  1
 
-//SSD1306 M
+//INTERRUPt TASK
+#define INT_TASK_STACK_SIZE               2048
+#define INT_TASK_PRIORITY                 3
+#define INT_TASK_CORE_ID                  1

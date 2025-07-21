@@ -2,7 +2,7 @@
  * @Author                : Oberson-Antoine<antoine.oberson@yahoo.fr>         *
  * @CreatedDate           : 2025-06-18 12:34:45                               *
  * @LastEditors           : Oberson-Antoine<antoine.oberson@yahoo.fr>         *
- * @LastEditDate          : 2025-06-28 21:19:34                               *
+ * @LastEditDate          : 2025-07-15 11:33:07                               *
  * @FilePath              : Trotten_Electric_Table/main/main.c                *
  *****************************************************************************/
 
@@ -12,9 +12,13 @@
 
 #include "HCSR04.h"
 
-#include "i2c.h"
+#include "i2c_p.h"
 
 #include "ssd1306.h"
+
+#include "interrupt.h"
+
+#include "MCP23017_p.h"
 
 void app_main(void)
 {
@@ -44,8 +48,10 @@ void app_main(void)
         //start HCSR04 sensor task
         HCSR04_task_start();
 
-        
 
+        start_interrupt_task();
+        
+        MCP23017_init();
         
         
 

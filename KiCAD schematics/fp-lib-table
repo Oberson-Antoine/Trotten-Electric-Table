@@ -4,4 +4,7 @@
   (lib (name "ESP32-30pin")(type "KiCad")(uri "${KIPRJMOD}/Lib/ESP32-30pin")(options "")(descr ""))
   (lib (name "CJMCU-2317 MCP23017 I2C SERIAL INTERFACE 16 BIT I")(type "KiCad")(uri "${KIPRJMOD}/Lib/CJMCU-2317 MCP23017 I2C SERIAL INTERFACE 16 BIT I")(options "")(descr ""))
   (lib (name "Connecteur_Moteur")(type "KiCad")(uri "${KIPRJMOD}/Lib/Connecteur_moteur/Connecteur_Moteur.pretty")(options "")(descr ""))
+  (lib (name "Button_6_6")(type "KiCad")(uri "${KIPRJMOD}/Lib/Connecteur_moteur/Button_6_6.pretty")(options "")(descr ""))
+  (lib (name "Adafruit_23017")(type "KiCad")(uri "${KIPRJMOD}/Lib/Adafruit_23017.pretty")(options "")(descr ""))
+  (lib (name "SSD1306")(type "KiCad")(uri "${KIPRJMOD}/Lib/SSD1306.pretty")(options "")(descr ""))
 )

@@ -1,0 +1,5 @@
+﻿"Square_Button_Width"= 24.8mm
+"Square_Button_Length"= 25mm
+"Square_Button_Stem_w"= 6.2mm
+"Square_Button_Stem_Length"= 3mm
+"Square_Button_Stem_marge"= 0.15mm

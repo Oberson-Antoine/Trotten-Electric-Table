@@ -139,7 +139,7 @@ static void HCSR04_task(void *pvParameter)
 
         UltrasonicAssert(return_value);
         if (return_value == ESP_OK) {
-            printf ("Distance: %ld\n\n", distance);
+            //printf ("Distance: %ld\n\n", distance);
             ssd1306_queue_message_t msg = {.msgID = HEIGHT_FLOAT ,.x = 0, .y = 0, .height_mes=distance};
             xQueueSend(SSD1306_queue, &msg, portMAX_DELAY);
             
