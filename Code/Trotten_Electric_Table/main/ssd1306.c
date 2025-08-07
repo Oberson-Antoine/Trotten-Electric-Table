@@ -329,7 +329,7 @@ void ssd1306_task()
 
     esp_lcd_panel_disp_on_off(ssd1306_panel_handle, true);
 
-    esp_lcd_panel_mirror(ssd1306_panel_handle, 1, 1);
+    esp_lcd_panel_mirror(ssd1306_panel_handle, 0, 0);
 
     // char buffer[7];
     // sprintf(buffer,"%d cm",232);

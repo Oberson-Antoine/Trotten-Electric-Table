@@ -18,6 +18,8 @@
 #include "interrupt.h"
 #include "rgb_led.h"
 #include "i2c_p.h"
+#include "MCP23017_p.h"
+#include "INA260.h"
 
 static bool init_flag = false;
 
@@ -27,6 +29,7 @@ BaseType_t xHigherPriorityTaskWoken = pdFALSE;
 
 static const char TAG[] = "Interrupt";
 
+//Handles the interrupt from the MCP23017
 void IRAM_ATTR MCP23_HANDLER(void *arg)
 {   
     int_queue_message_t msg = { .msgID = MCP23017 };
@@ -76,6 +79,9 @@ void int_task()
             {
             case MCP23017:
                 ESP_LOGI(TAG, "INTERRUPT DETECTED");
+                uint8_t value = MCP23017_read();
+                INA260_read(INA260_REG_BUS_VOLTAGE);
+                printf("valeur lue : %d \n", value);
                 break;
 
             default:

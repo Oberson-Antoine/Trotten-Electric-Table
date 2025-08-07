@@ -39,3 +39,9 @@ typedef enum{
 
 //Init and configures the MCP23017
 void MCP23017_init(void);
+
+/**
+ * Reads the MCP23017 buffer
+ * @return uint8 value 
+ */
+uint8_t MCP23017_read();

@@ -20,6 +20,8 @@
 
 #include "MCP23017_p.h"
 
+#include "INA260.h"
+
 void app_main(void)
 {
 
@@ -52,6 +54,8 @@ void app_main(void)
         start_interrupt_task();
         
         MCP23017_init();
+
+        INA260_init();
         
         
 

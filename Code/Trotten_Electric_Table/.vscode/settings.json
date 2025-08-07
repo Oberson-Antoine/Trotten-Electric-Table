@@ -56,7 +56,8 @@
     "regex": "c",
     "tuple": "c",
     "type_traits": "c",
-    "utility": "c"
+    "utility": "c",
+    "compare": "c"
   },
   "idf.flashType": "UART"
 }

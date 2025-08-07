@@ -15,8 +15,8 @@
 #include "MCP23017_p.h"
 #include "i2c_p.h"
 
-i2c_master_bus_handle_t i2c_bus_handle;
-SemaphoreHandle_t i2c_mutex_handle;
+static i2c_master_bus_handle_t i2c_bus_handle;
+static SemaphoreHandle_t i2c_mutex_handle;
 
 static const char TAG[] = "MCP23017";
 
@@ -28,6 +28,8 @@ i2c_device_config_t mcp_i2c_cfg = {
 };
 
 bool init_flag = false;
+
+const uint8_t pin_mask = (1 << 4) | (1 << 5) | (1 << 6) | (1 << 7);
 
 esp_err_t mcp23017_write_reg(uint8_t reg, uint8_t value)
 {
@@ -60,7 +62,7 @@ void MCP23017_init(void)
         if (xSemaphoreTake(i2c_mutex_handle, portMAX_DELAY) == pdTRUE)
         {
 
-            uint8_t pin_mask = (1 << 6) | (1 << 7);
+            // uint8_t pin_mask = (1 << 4) | (1 << 5) | (1 << 6) | (1 << 7);
             // Set all GPB pins as input
             ESP_ERROR_CHECK(mcp23017_write_reg(MCP23017_REG_IODIRB, 0xff));
             // Set all GPB pins low
@@ -74,7 +76,6 @@ void MCP23017_init(void)
 
             // mcp23017_write_reg(0x5, 0xff);
 
-
             uint8_t reg = MCP23017_REG_GPIOB;
             uint8_t dummy;
             i2c_master_transmit(mcp_dev_handle, &reg, 1, pdMS_TO_TICKS(1000));
@@ -83,15 +84,25 @@ void MCP23017_init(void)
 
             xSemaphoreGive(i2c_mutex_handle);
         }
+        init_flag = true;
     }
 }
 
-void MCP23017_task()
+uint8_t MCP23017_read()
 {
+    uint8_t reg = MCP23017_REG_GPIOB;
+    uint8_t value;
 
+    if (xSemaphoreTake(i2c_mutex_handle, portMAX_DELAY) == pdTRUE)
+    {
+        if (i2c_master_transmit(mcp_dev_handle, &reg, 1, pdMS_TO_TICKS(1000)) == ESP_OK) // Transmit to the mcp which register to read
+        {
+            i2c_master_receive(mcp_dev_handle, &value, 1, pdMS_TO_TICKS(1000));
+        }
+
+        xSemaphoreGive(i2c_mutex_handle);
+    }
+
+    return value;
 }
 
-void start_MCP23017_task()
-{
-    
-}

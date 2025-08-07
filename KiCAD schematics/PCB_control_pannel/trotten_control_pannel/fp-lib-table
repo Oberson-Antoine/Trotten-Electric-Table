@@ -1,0 +1,6 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "Connecteur_Moteur")(type "KiCad")(uri "C:/Users/antoi/Documents/Github/Trotten-Electric-Table/KiCAD schematics/Lib/Connecteur_moteur/Connecteur_Moteur.pretty")(options "")(descr ""))
+  (lib (name "SSD1306")(type "KiCad")(uri "C:/Users/antoi/Documents/Github/Trotten-Electric-Table/KiCAD schematics/Lib/SSD1306.pretty")(options "")(descr ""))
+  (lib (name "Adafruit_23017")(type "KiCad")(uri "C:/Users/antoi/Documents/Github/Trotten-Electric-Table/KiCAD schematics/Lib/Adafruit_23017.pretty")(options "")(descr ""))
+)

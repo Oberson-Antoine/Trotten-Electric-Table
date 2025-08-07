@@ -49,6 +49,11 @@
 #define SSD1306_TASK_CORE_ID                  1
 
 //INTERRUPt TASK
-#define INT_TASK_STACK_SIZE               2048
+#define INT_TASK_STACK_SIZE               4096
 #define INT_TASK_PRIORITY                 3
 #define INT_TASK_CORE_ID                  1
+
+//MCP23017 TASK
+#define MCP_TASK_STACK_SIZE               2048
+#define MCP_TASK_PRIORITY                 3
+#define MCP_TASK_CORE_ID                  1
