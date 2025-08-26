@@ -22,6 +22,9 @@
 
 #include "INA260.h"
 
+#include "BTS7690.h"
+
+
 void app_main(void)
 {
 
@@ -55,7 +58,7 @@ void app_main(void)
         
         MCP23017_init();
 
-        INA260_init();
+        //INA260_init();
         
         
 

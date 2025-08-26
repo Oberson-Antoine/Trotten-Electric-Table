@@ -80,7 +80,7 @@ void int_task()
             case MCP23017:
                 ESP_LOGI(TAG, "INTERRUPT DETECTED");
                 uint8_t value = MCP23017_read();
-                INA260_read(INA260_REG_BUS_VOLTAGE);
+                //INA260_read(INA260_REG_CURRENT);
                 printf("valeur lue : %d \n", value);
                 break;
 

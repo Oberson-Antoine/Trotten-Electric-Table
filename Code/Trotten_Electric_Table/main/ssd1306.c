@@ -335,6 +335,8 @@ void ssd1306_task()
     // sprintf(buffer,"%d cm",232);
     // draw_string(0, 0, buffer, HEIGHT_FLOAT);
     // ESP_ERROR_CHECK(esp_lcd_panel_draw_bitmap(ssd1306_panel_handle, 0, 0, WIDTH, HEIGHT, ssd1306_framebuffer));
+    draw_string(0, 0, "hello", STRING_PRINT);
+    ESP_ERROR_CHECK(esp_lcd_panel_draw_bitmap(ssd1306_panel_handle, 0, 0, WIDTH, HEIGHT, ssd1306_framebuffer));
 
     xSemaphoreGive(i2c_bus_mutex_handle); // release the mutex
 

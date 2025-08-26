@@ -57,7 +57,12 @@
     "tuple": "c",
     "type_traits": "c",
     "utility": "c",
-    "compare": "c"
+    "compare": "c",
+    "pulse_cnt.h": "c",
+    "gpio.h": "c",
+    "mcpwm.h": "c",
+    "BTS7690.H": "cpp",
+    "mcpwm_gen.h": "c"
   },
   "idf.flashType": "UART"
 }

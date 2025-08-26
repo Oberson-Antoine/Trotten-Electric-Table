@@ -18,8 +18,8 @@ extern "C" {
 #define ESP_ERR_ULTRASONIC_PING_TIMEOUT 0x201
 #define ESP_ERR_ULTRASONIC_ECHO_TIMEOUT 0x202
 
-#define ESP_HCSR04_TRIGGER_PIN    14  // define trigger IO pin */
-#define ESP_HCSR04_ECHO_PIN       15      // define echo IO pin */
+#define ESP_HCSR04_TRIGGER_PIN    5//14  // define trigger IO pin */
+#define ESP_HCSR04_ECHO_PIN       9//15      // define echo IO pin */
 
 
 

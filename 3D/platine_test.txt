@@ -1,0 +1,2 @@
+"PCB_largeur" = 75.8mm
+"PCB_longueur" = 60.4mm

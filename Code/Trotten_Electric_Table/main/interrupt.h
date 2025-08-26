@@ -12,7 +12,7 @@
 
 #include <esp_err.h>
 
-#define MCP23_INT_PIN 9
+#define MCP23_INT_PIN 16//9
 
 typedef enum int_message_ids
 {
